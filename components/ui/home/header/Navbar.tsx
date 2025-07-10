@@ -21,9 +21,16 @@ export function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
               <span className="text-2xl font-bold">
-                <span className="bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">
-                  ByteCode
-                </span>
+                <span
+  className="bg-gradient-to-r from-purple-600 to-indigo-600 
+             dark:from-purple-400 dark:to-indigo-400 
+             bg-clip-text text-transparent 
+             transition duration-300 
+             hover:drop-shadow-[0_0_10px_rgba(139,92,246,0.8)] 
+             dark:hover:drop-shadow-[0_0_10px_rgba(192,132,252,0.8)]">
+  ByteCode
+</span>
+
                 
               </span>
             </Link>
@@ -115,28 +122,28 @@ export function Navbar() {
             <div className="space-y-2 px-4">
               <Link
                 href="/articles"
-                className="block px-3 py-2 text-base font-medium text-foreground"
+                className="block px-3 py-2 text-base font-medium text-foreground hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Articles
               </Link>
               <Link
                 href="/tutorials"
-                className="block px-3 py-2 text-base font-medium text-foreground"
+                className="block px-3 py-2 text-base font-medium text-foreground hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Tutorials
               </Link>
               <Link
                 href="/about"
-                className="block px-3 py-2 text-base font-medium text-foreground"
+                className="block px-3 py-2 text-base font-medium text-foreground hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About
               </Link>
               <Link
                 href="/dashboard"
-                className="block px-3 py-2 text-base font-medium text-foreground"
+                className="block px-3 py-2 text-base font-medium text-foreground hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors "
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Dashboard
@@ -147,13 +154,13 @@ export function Navbar() {
             <SignedOut>
               <div className="px-4 flex flex-col gap-2">
                 <SignInButton>
-                  <Button className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400 ">
+                  <Button className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400 hover:from-purple-500 hover:to-indigo-500 h">
                     Login
                   </Button>
                 </SignInButton>
                 <SignUpButton>
                   <Button 
-                 className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400  ">Sign up</Button>
+                 className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400 hover:from-purple-500 hover:to-indigo-500 h ">Sign up</Button>
                 </SignUpButton>
               </div>
             </SignedOut>

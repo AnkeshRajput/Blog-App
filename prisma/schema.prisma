@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../app/generated/prisma"
+   output   = "../app/generated/prisma"
 }
 
 datasource db {
@@ -14,9 +14,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id        String   @id @default(cuid())
-   clerkUserId String     @unique
+model User {
+  id          String     @id @default(cuid())
+  clerkUserId String     @unique
   email       String     @unique
   name        String
   imageUrl    String?
@@ -24,7 +24,6 @@ model User{
   articles    Articles[]
   comments    Comment[]
   likes       Like[] // A user can like multiple articles
-
 }
 
 model Articles {
