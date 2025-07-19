@@ -11,7 +11,7 @@ import {
   TableRow,
 } from "../ui/table";
 import Link from "next/link";
-import type { Prisma } from "@prisma/client";
+import { Prisma } from "@/app/generated/prisma";
 import { deleteArticle } from "@/actions/delete-article";
 type RecentArticlesProps = {
   articles: Prisma.ArticlesGetPayload<{

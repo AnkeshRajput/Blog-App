@@ -8,9 +8,22 @@ import Link from "next/link";
 import { SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import SearchInput from "./search-input";
+import { useRouter } from "next/navigation";
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mobileSearchTerm, setMobileSearchTerm] = useState("");
+  const router = useRouter();
+
+  const handleMobileSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (mobileSearchTerm.trim()) {
+      router.push(`/articles?search=${encodeURIComponent(mobileSearchTerm.trim())}`);
+    } else {
+      router.push("/articles");
+    }
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -108,14 +121,18 @@ export function Navbar() {
           <div className="md:hidden py-4 space-y-4 border-t">
             {/* Search Bar (Mobile) */}
             <div className="px-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                  type="search"
-                  placeholder="Search articles..."
-                  className="pl-10 w-full focus-visible:ring-1"
-                />
-              </div>
+              <form onSubmit={handleMobileSearch}>
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    type="search"
+                    value={mobileSearchTerm}
+                    onChange={(e) => setMobileSearchTerm(e.target.value)}
+                    placeholder="Search articles..."
+                    className="pl-10 w-full focus-visible:ring-1"
+                  />
+                </div>
+              </form>
             </div>
 
             {/* Mobile Navigation Links */}
