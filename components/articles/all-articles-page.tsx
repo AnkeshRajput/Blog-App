@@ -1,8 +1,10 @@
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"; 
-import { Search } from "lucide-react";
+import {  Search } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { Prisma } from "@/app/generated/prisma";
+
 
 type SearchPageProps = {
   articles: Prisma.ArticlesGetPayload<{
@@ -25,6 +27,7 @@ export function AllArticlesPage({ articles }: SearchPageProps) {
   return (
     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {articles.map((article) => (
+        
         <Card
           key={article.id}
           className="group relative overflow-hidden transition-all hover:shadow-lg"
@@ -47,6 +50,7 @@ export function AllArticlesPage({ articles }: SearchPageProps) {
 
             {/* Author & Metadata */}
             <div className="mt-6 flex items-center justify-between">
+              <Link href ={`/articles/${article.id}`}>
               <div className="flex items-center gap-3">
                 <Avatar className="h-8 w-8">
                   <AvatarImage src={article.author.imageUrl as string} />
@@ -55,7 +59,7 @@ export function AllArticlesPage({ articles }: SearchPageProps) {
                 <span className="text-sm text-muted-foreground">
                   {article.author.name}
                 </span>
-              </div>
+              </div></Link>
               <div className="text-sm text-muted-foreground">
                 {article.createdAt.toDateString()}
               </div>
