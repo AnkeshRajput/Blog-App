@@ -6,21 +6,35 @@ import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 
 export async function TopArticles() {
-  const articles = await prisma.articles.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-    include: {
-      comments: true,
-      author: {
-        select: {
-          name: true,
-          email: true,
-          imageUrl: true,
+  let articles: any[] = [];
+  try {
+    articles = await prisma.articles.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      include: {
+        comments: true,
+        author: {
+          select: {
+            name: true,
+            email: true,
+            imageUrl: true,
+          },
         },
       },
-    },
-  });
+    });
+  } catch (err) {
+    // Graceful fallback when DB is unreachable in preview/deploys
+    return (
+      <div className="rounded-2xl border border-yellow-300/40 bg-yellow-50/60 p-6 text-yellow-900">
+        <h3 className="text-lg font-semibold">Top Articles Unavailable</h3>
+        <p className="text-sm opacity-80">
+          We’re having trouble connecting to the database right now. Please try
+          again later.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

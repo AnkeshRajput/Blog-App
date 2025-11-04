@@ -1,11 +1,19 @@
 "use client";
 import Image from "next/image";
 import { Button } from "../button";
-import { cn } from "@/lib/utils";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-[600px] w-full overflow-hidden bg-gradient-to-br from-purple-950 via-indigo-950 to-indigo-950">
+      {/* Background Logo Image */}
+      <Image
+        src="https://hearinghope.in/wp-content/uploads/2024/09/Logo.png"
+        alt="HearingHope Background Logo"
+        fill
+        className="object-cover object-center opacity-40 select-none pointer-events-none z-0"
+        sizes="100vw"
+        priority
+      />
       {/* Gradient overlay */}
       <div className="absolute inset-0 before:absolute before:left-1/4 before:top-0 before:h-[500px] before:w-[500px] before:rounded-full before:bg-gradient-to-r before:from-violet-600/20 before:to-indigo-600/20 before:blur-3xl" />
 
@@ -61,20 +69,13 @@ const HeroSection = () => {
 
         <div className="mt-12 flex-1 md:mt-0">
           <div
-            className={cn(
-              "relative mx-auto h-64 w-64 rounded-2xl overflow-hidden",
-              "bg-gradient-to-br from-white/5 to-transparent",
-              "border border-primary/20 backdrop-blur-lg",
-              "shadow-2xl shadow-indigo-500/10",
-              // Add hover effect here 👇
-              "transition-transform duration-300 ease-in-out  hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] hover:scale-105"
-            )}
+            className={"relative mx-auto h-64 w-64 rounded-2xl overflow-hidden bg-gradient-to-br from-white/5 to-transparent border border-primary/20 backdrop-blur-lg shadow-2xl shadow-indigo-500/10 transition-transform duration-300 ease-in-out  hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] hover:scale-105"}
           >
             <Image
-              src="/blogimg.jpg"
-              alt="Illustration for the blog"
-              layout="fill"
-              className="object-cover"
+              src="https://hearinghope.in/wp-content/uploads/2024/09/Logo.png"
+              alt="HearingHope Illustration"
+              fill
+              className="object-contain bg-white/5"
             />
           </div>
         </div>

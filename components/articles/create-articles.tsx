@@ -9,14 +9,13 @@ import "react-quill-new/dist/quill.snow.css";
 import { createArticles } from "@/actions/create-article";
 import dynamic from "next/dynamic";
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
- 
+
 export function CreateArticlePage() {
   const [content, setContent] = useState("");
 
   const [formState, action, isPending] = useActionState(createArticles, {
     errors: {},
   });
- 
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,7 +28,7 @@ export function CreateArticlePage() {
       action(formData);
     });
   };
- 
+
   return (
     <div className="max-w-4xl mx-auto p-6">
       <Card>
@@ -60,9 +59,12 @@ export function CreateArticlePage() {
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <option value="">Select Category</option>
-                <option value="technology">Technology</option>
-                <option value="programming">Programming</option>
-                <option value="web-development">Web Development</option>
+                <option value="hearing-health">Hearing Health</option>
+                <option value="sound-technology">Sound Technology</option>
+                <option value="audiology">Audiology</option>
+                <option value="wellness">Wellness</option>
+                <option value="science">Science</option>
+                <option value="education">Education & Awareness</option>
               </select>
               {formState.errors.category && (
                 <span className="font-medium text-sm text-red-500">
@@ -88,11 +90,7 @@ export function CreateArticlePage() {
 
             <div className="space-y-2">
               <Label>Content</Label>
-              <ReactQuill
-                theme="snow"
-                value={content}
-                onChange={setContent} 
-              />
+              <ReactQuill theme="snow" value={content} onChange={setContent} />
               {formState.errors.content && (
                 <span className="font-medium text-sm text-red-500">
                   {formState.errors.content[0]}

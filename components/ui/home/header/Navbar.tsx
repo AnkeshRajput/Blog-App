@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Search, Menu, X } from "lucide-react";
 import { ModeToggle } from "../../dark-mode";
 import Link from "next/link";
+import Image from "next/image";
 import { SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import SearchInput from "./search-input";
@@ -33,18 +34,23 @@ export function Navbar() {
           <div className="flex items-center gap-8">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
+              <Image
+                src="https://hearinghope.in/wp-content/uploads/2024/09/Logo.png"
+                alt="HearingHope Logo"
+                width={28}
+                height={28}
+                className="rounded-sm"
+              />
               <span className="text-2xl font-bold">
                 <span
-  className="bg-gradient-to-r from-purple-600 to-indigo-600 
+                  className="bg-gradient-to-r from-purple-600 to-indigo-600 
              dark:from-purple-400 dark:to-indigo-400 
              bg-clip-text text-transparent 
              transition duration-300 
              hover:drop-shadow-[0_0_10px_rgba(139,92,246,0.8)] 
              dark:hover:drop-shadow-[0_0_10px_rgba(192,132,252,0.8)]">
-  ByteCode
-</span>
-
-                
+                  HearinghHope Blogs
+                </span>
               </span>
             </Link>
 
@@ -56,12 +62,7 @@ export function Navbar() {
               >
                 Articles
               </Link>
-              <Link
-                href="/tutorials"
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                Tutorials
-              </Link>
+              
               <Link
                 href="/about"
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
