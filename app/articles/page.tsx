@@ -8,14 +8,15 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 type SearchPageProps = {
-  searchParams: { search?: string; page?: string };
+  searchParams: Promise<{ search?: string; page?: string }>;
 };
 
 const ITEMS_PER_PAGE = 3;
 
 export default async function ArticlesPage({ searchParams }: SearchPageProps) {
-  const searchText = searchParams.search || "";
-  const currentPage = Number(searchParams.page) || 1;
+  const params = await searchParams;
+  const searchText = params.search || "";
+  const currentPage = Number(params.page) || 1;
   const skip = (currentPage - 1) * ITEMS_PER_PAGE;
   const take = ITEMS_PER_PAGE;
 
