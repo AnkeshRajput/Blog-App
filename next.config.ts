@@ -1,13 +1,6 @@
 import type { NextConfig } from "next";
 
-// Extend NextConfig locally to include serverActions for TypeScript
-type NextConfigWithServerActions = NextConfig & {
-  serverActions?: {
-    bodySizeLimit?: number | string;
-  };
-};
-
-const nextConfig: NextConfigWithServerActions = {
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
@@ -20,9 +13,11 @@ const nextConfig: NextConfigWithServerActions = {
       },
     ],
   },
-  // Increase Server Actions body size limit from default 1 MB to 4 MB
-  serverActions: {
-    bodySizeLimit: 10 * 1024 * 1024, // 10 MB
+  experimental: {
+    serverActions: {
+      // Increase Server Actions body size limit (supports number or string like "10mb")
+      bodySizeLimit: 10 * 1024 * 1024,
+    },
   },
 };
 
